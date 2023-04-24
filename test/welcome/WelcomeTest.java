@@ -23,5 +23,15 @@ class WelcomeTest {
 		assertEquals("Hello, my freind",Welcome.welcome("    "));
 		assertEquals("Hello, P",Welcome.welcome("p"));
 	}
+	
+	@Test
+	void test3() {
+		assertEquals("Hello, my freind",Welcome.welcome(null));
+		assertEquals("Hello, my freind",Welcome.welcome(""));
+		assertEquals("Hello, my freind",Welcome.welcome("    "));
+		assertEquals("Hello, NATHAN !",Welcome.welcome("NATHAN"));
+		assertEquals("Hello, Jerome",Welcome.welcome("Jerome"));
+		
+	}
 
 }

@@ -14,8 +14,16 @@ public class Welcome {
 			case 0: string.append("my freind");
 					break;
 			default:
-				string.append(input.substring(0, 1).toUpperCase());
-				string.append(input.substring(1));
+				/**/
+				String originString = input;
+				
+				if(originString.equals(input.toUpperCase())) {
+					string.append(input);
+					string.append(" !");
+				}else {	
+					string.append(input.substring(0, 1).toUpperCase());
+					string.append(input.substring(1));
+				}
 				break;
 		}
 		return string.toString();
