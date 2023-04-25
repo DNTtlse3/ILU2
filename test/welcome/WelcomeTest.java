@@ -54,5 +54,16 @@ class WelcomeTest {
 		assertEquals("Hello, Marie, Christelle, Cédric",Welcome.welcome("Marie,christelle,cédric"));
 		assertEquals("Hello, William, Reine",Welcome.welcome("william,reine"));
 	}
+	
+	
+	@Test
+	void test6() {
+		assertEquals("Hello, my freind",Welcome.welcome(""));
+		assertEquals("Hello, my freind",Welcome.welcome(null));
+		assertEquals("Hello, Amy, Jerry. AND Hello BOB JACK !",Welcome.welcome("Amy,BOB,Jerry,JACK"));
+		assertEquals("Hello, Amy, Jerry. AND Hello BOB ROBERT !",Welcome.welcome("Amy,BOB,ROBERT,Jerry"));
+		assertEquals("Hello, Poole. AND Hello CHRIS !",Welcome.welcome("Poole,CHRIS"));
+		assertEquals("Hello, JACK CHRIS !",Welcome.welcome("JACK,CHRIS"));
+	}
 
 }
