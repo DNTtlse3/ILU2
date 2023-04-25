@@ -17,15 +17,16 @@ public class Welcome {
 	}
 		
 	private static String reponse(String lesNoms){
+		/*Pour les noms en miniscule*/
+		StringBuilder s1 = new StringBuilder();
 		
-		StringBuilder s1 = new StringBuilder(); 
-		
+		/*Pour les noms en majuscule*/
 		StringBuilder s2 = new StringBuilder();
 		
 		for(String prenom : lesNoms.split(",")) {	
 			if(prenom.equals(prenom.toUpperCase())) {
 				s2.append(prenom);
-				s2.append(" ");
+				s2.append(",");
 			}else {
 				s1.append(prenom);
 				s1.append(",");
@@ -43,14 +44,14 @@ public class Welcome {
 			result.append(myMsgHello(s1, false));
 			result.append(". AND Hello ");
 			result.append(myMsgHello(s2, true));
-			result.append("!");
+			result.append(" !");
 			
 		}else if((s2.length() == 0)){
 			result.append(myMsgHello(s1, false));
 		}else {
 			
 			result.append(myMsgHello(s2, true));
-			result.append("!");
+			result.append(" !");
 		}
 		/**/
 		return result.toString();
@@ -59,17 +60,33 @@ public class Welcome {
 	private static String myMsgHello(String s, boolean action) {
 		StringBuilder result = new StringBuilder();
 		String[] tab_noms = s.split(",");
+		
+		int nombreDenoms = 0;
+		
 		for(int k = 0 ; k < tab_noms.length ; k ++) {
 			
-			if(! action) { 
+			boolean confirmation = ((tab_noms.length >= 2)  && (k + 1) % tab_noms.length == 0 );
+			
+			if(!action) { 
+				
+				++nombreDenoms;
+				
+				if(confirmation) result.append(" and ");
 				result.append(tab_noms[k].substring(0, 1).toUpperCase());
 				result.append(tab_noms[k].substring(1));
+				
 			}else {
+				
+				++nombreDenoms;
+				if(confirmation) result.append(" AND ");
 				result.append(tab_noms[k]);
 			}
-				
-			if( !action  &&  (k + 1) % tab_noms.length != 0 ) result.append(", ");
-			if( action  &&  (k + 1) % tab_noms.length != 0 ) result.append(" ");
+			
+			boolean condition =  (tab_noms.length > 2)  && ((k + 1) % (tab_noms.length) != 0) && ((nombreDenoms + 1) % tab_noms.length != 0);
+			/*Si on a pluisieurs noms en miniscule*/
+			if( !action  && condition) result.append(", ");
+			/*Si on a pluisieurs noms en majusculse*/
+			if( action  &&  condition) result.append(" ");
 		}
 		return result.toString();
 	}

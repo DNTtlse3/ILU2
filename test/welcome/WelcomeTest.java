@@ -39,9 +39,9 @@ class WelcomeTest {
 		assertEquals("Hello, my freind",Welcome.welcome(null));
 		assertEquals("Hello, my freind",Welcome.welcome("  "));
 		assertEquals("Hello, Marck",Welcome.welcome("marck"));
-		assertEquals("Hello, Jean, Louis",Welcome.welcome("jean,louis"));
+		assertEquals("Hello, Jean and Louis",Welcome.welcome("jean,louis"));
 		assertEquals("Hello, JACK !",Welcome.welcome("JACK"));
-		assertEquals("Hello, Gireaud, Jean",Welcome.welcome("gireaud,jean"));	
+		assertEquals("Hello, Gireaud and Jean",Welcome.welcome("gireaud,jean"));	
 	}
 	
 	@Test
@@ -50,9 +50,9 @@ class WelcomeTest {
 		assertEquals("Hello, my freind",Welcome.welcome(""));
 		assertEquals("Hello, my freind",Welcome.welcome("    "));
 		assertEquals("Hello, JACK !",Welcome.welcome("JACK"));
-		assertEquals("Hello, Jean, Kelvin, Paul, Poole",Welcome.welcome("jean,kelvin,paul,poole"));
-		assertEquals("Hello, Marie, Christelle, Cédric",Welcome.welcome("Marie,christelle,cédric"));
-		assertEquals("Hello, William, Reine",Welcome.welcome("william,reine"));
+		assertEquals("Hello, Jean, Kelvin, Paul and Poole",Welcome.welcome("jean,kelvin,paul,poole"));
+		assertEquals("Hello, Marie, Christelle and Cédric",Welcome.welcome("Marie,christelle,cédric"));
+		assertEquals("Hello, William and Reine",Welcome.welcome("william,reine"));
 	}
 	
 	
@@ -60,10 +60,19 @@ class WelcomeTest {
 	void test6() {
 		assertEquals("Hello, my freind",Welcome.welcome(""));
 		assertEquals("Hello, my freind",Welcome.welcome(null));
-		assertEquals("Hello, Amy, Jerry. AND Hello BOB JACK !",Welcome.welcome("Amy,BOB,Jerry,JACK"));
-		assertEquals("Hello, Amy, Jerry. AND Hello BOB ROBERT !",Welcome.welcome("Amy,BOB,ROBERT,Jerry"));
+		assertEquals("Hello, Amy and Jerry. AND Hello BOB AND JACK !",Welcome.welcome("Amy,BOB,Jerry,JACK"));
+		assertEquals("Hello, Amy and Jerry. AND Hello BOB AND ROBERT !",Welcome.welcome("Amy,BOB,ROBERT,Jerry"));
 		assertEquals("Hello, Poole. AND Hello CHRIS !",Welcome.welcome("Poole,CHRIS"));
-		assertEquals("Hello, JACK CHRIS !",Welcome.welcome("JACK,CHRIS"));
+		assertEquals("Hello, JACK AND CHRIS !",Welcome.welcome("JACK,CHRIS"));
+	}
+	
+	@Test
+	void test7() {
+		assertEquals("Hello, Bob, Amy and Jerry",Welcome.welcome("bob,amy,jerry"));
+		assertEquals("Hello, Bob and Jerry. AND Hello AMY AND JACK !",Welcome.welcome("bob,AMY,jerry,JACK"));
+		assertEquals("Hello, Bob and Jerry. AND Hello AMY ROLANDS AND JACK !",Welcome.welcome("bob,AMY,jerry,ROLANDS,JACK"));
+		assertEquals("Hello, Bob and Jerry. AND Hello AMY !",Welcome.welcome("bob,AMY,jerry"));
+		assertEquals("Hello, Bob. AND Hello AMY AND JACK !",Welcome.welcome("bob,AMY,JACK"));
 	}
 
 }
