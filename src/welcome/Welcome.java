@@ -10,7 +10,12 @@ public class Welcome {
 			case 0: string.append("my freind");
 					break;
 			default:
-				string.append(reponse(input));
+				
+				/*On filtre input*/
+				
+				String messageFiltrer = pretraitementMessage(input);
+				
+				string.append(reponse(messageFiltrer));
 				break;
 		}
 		return string.toString();
@@ -65,6 +70,7 @@ public class Welcome {
 		
 		for(int k = 0 ; k < tab_noms.length ; k ++) {
 			
+			/*Condition permettant de savoir si on peut mettre and ou AND*/
 			boolean confirmation = ((tab_noms.length >= 2)  && (k + 1) % tab_noms.length == 0 );
 			
 			if(!action) { 
@@ -83,6 +89,7 @@ public class Welcome {
 			}
 			
 			boolean condition =  (tab_noms.length > 2)  && ((k + 1) % (tab_noms.length) != 0) && ((nombreDenoms + 1) % tab_noms.length != 0);
+			
 			/*Si on a pluisieurs noms en miniscule*/
 			if( !action  && condition) result.append(", ");
 			/*Si on a pluisieurs noms en majusculse*/
@@ -91,5 +98,15 @@ public class Welcome {
 		return result.toString();
 	}
 	
-	
+	private static String pretraitementMessage(String s) {
+		
+		StringBuilder msgClean = new StringBuilder();
+		
+		for(String e : s.split(" ")) {
+			
+			if(!e.equals(" ")) msgClean.append(e);
+		}
+		return msgClean.toString();
+	}
+		
 }         
